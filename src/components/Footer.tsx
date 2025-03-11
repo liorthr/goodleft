@@ -20,7 +20,7 @@ const Footer = () => {
           {/* Column 1 */}
           <div className="space-y-6">
             <div className="font-heading font-bold text-2xl text-gradient">
-              AgenceMarketing
+              Goodleft
             </div>
             <p className="text-muted-foreground">
               Votre partenaire marketing digital à Paris, spécialisé dans le secteur du bâtiment et bien plus encore.
@@ -62,23 +62,25 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 text-primary shrink-0 mt-0.5" />
-                <p className="text-muted-foreground">Paris, France</p>
+                <p className="text-muted-foreground">60 rue François 1er, 75008 Paris</p>
               </div>
               <div className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-primary shrink-0" />
-                <a href="mailto:contact@agencemarketing.fr" className="text-muted-foreground hover:text-primary transition-colors">
-                  contact@agencemarketing.fr
+                <a href="mailto:contact@goodleft.com" className="text-muted-foreground hover:text-primary transition-colors">
+                  contact@goodleft.com
                 </a>
               </div>
               <div className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-primary shrink-0" />
-                <a href="tel:+33123456789" className="text-muted-foreground hover:text-primary transition-colors">
-                  +33 1 23 45 67 89
+                <a href="tel:+33782979479" className="text-muted-foreground hover:text-primary transition-colors">
+                  +33 7 82 97 94 79
                 </a>
               </div>
-              <Button className="w-full mt-2 smooth-transition button-hover">
-                <span className="mr-2">Nous contacter</span>
-                <ArrowRight className="h-4 w-4" />
+              <Button className="w-full mt-2 smooth-transition button-hover" asChild>
+                <Link to="/contact">
+                  <span className="mr-2">Nous contacter</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </Button>
             </div>
           </div>
@@ -86,7 +88,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} AgenceMarketing. Tous droits réservés.
+            © {new Date().getFullYear()} Goodleft. Tous droits réservés.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">

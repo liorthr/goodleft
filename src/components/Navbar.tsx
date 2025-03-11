@@ -41,7 +41,7 @@ const Navbar = () => {
             onClick={closeMenu}
           >
             <div className="font-heading font-bold text-2xl text-gradient">
-              AgenceMarketing
+              Goodleft
             </div>
           </Link>
 
@@ -61,9 +61,11 @@ const Navbar = () => {
                 Contact
               </NavLink>
             </div>
-            <Button className="smooth-transition button-hover" size="sm">
-              <span className="mr-2">Démarrer un projet</span>
-              <ArrowRight className="h-4 w-4" />
+            <Button className="smooth-transition button-hover" size="sm" asChild>
+              <Link to="/contact">
+                <span className="mr-2">Démarrer un projet</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </Button>
           </div>
 
@@ -98,9 +100,11 @@ const Navbar = () => {
                   Contact
                 </NavLink>
               </div>
-              <Button className="w-full smooth-transition button-hover">
-                Démarrer un projet
-                <ArrowRight className="h-4 w-4 ml-2" />
+              <Button className="w-full smooth-transition button-hover" asChild>
+                <Link to="/contact">
+                  Démarrer un projet
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Link>
               </Button>
             </div>
           </div>

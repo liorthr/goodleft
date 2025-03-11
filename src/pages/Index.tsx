@@ -32,6 +32,7 @@ import CTASection from "@/components/CTASection";
 
 const Index = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const textElements = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
     // Intersection Observer for scroll animations
@@ -52,9 +53,49 @@ const Index = () => {
       observerRef.current?.observe(element);
     });
 
+    // Animation for hero text
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let interval: number | null = null;
+    
+    const animateText = (el: HTMLElement) => {
+      let iteration = 0;
+      const originalText = el.dataset.value || el.innerText;
+      
+      clearInterval(interval as number);
+      
+      interval = window.setInterval(() => {
+        el.innerText = el.innerText
+          .split("")
+          .map((letter, index) => {
+            if (index < iteration) {
+              return originalText[index];
+            }
+            return letters[Math.floor(Math.random() * 26)];
+          })
+          .join("");
+        
+        if (iteration >= originalText.length) {
+          clearInterval(interval as number);
+        }
+        
+        iteration += 1 / 3;
+      }, 30);
+    };
+
+    // Apply text animation to specific elements
+    textElements.current.forEach(el => {
+      if (el) {
+        el.dataset.value = el.innerText;
+        animateText(el);
+      }
+    });
+
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
+      }
+      if (interval) {
+        clearInterval(interval);
       }
     };
   }, []);
@@ -64,20 +105,15 @@ const Index = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[600px] flex items-center justify-center">
-        {/* Video Background */}
-        <div className="absolute inset-0 overflow-hidden">
-          <video
-            className="video-bg"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/placeholder.svg"
-          >
-            <source src="#" type="video/mp4" />
-          </video>
-          <div className="video-overlay"></div>
+      <section className="relative h-screen min-h-[600px] flex items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-700 overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 left-0 w-full h-full bg-grid-white/[0.2] [mask-image:linear-gradient(0deg,transparent,rgba(255,255,255,0.7),transparent)]"></div>
+            <div className="absolute -top-[40%] -left-[10%] w-[70%] h-[70%] bg-purple-500/20 rounded-full blur-3xl animate-blob"></div>
+            <div className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%] bg-indigo-500/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+            <div className="absolute top-[20%] right-[20%] w-[40%] h-[40%] bg-blue-500/20 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
+          </div>
         </div>
 
         <div className="container relative z-10 px-4 text-center">
@@ -86,13 +122,18 @@ const Index = () => {
               Agence Marketing à Paris
             </span>
           </div>
-          <h1 className="mt-6 text-4xl md:text-6xl font-bold text-white max-w-4xl mx-auto leading-tight animate-fade-in" style={{ animationDelay: "0.4s" }}>
-            Marketing Digital Expert pour le Secteur du Bâtiment
+          <h1 className="mt-6 text-4xl md:text-6xl font-bold text-white max-w-4xl mx-auto leading-tight">
+            <span ref={el => textElements.current[0] = el} className="block mb-2 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+              Marketing Digital Expert
+            </span>
+            <span ref={el => textElements.current[1] = el} className="block animate-fade-in" style={{ animationDelay: "0.6s" }}>
+              pour le Secteur du Bâtiment
+            </span>
           </h1>
-          <p className="mt-6 text-xl text-white/80 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.6s" }}>
+          <p className="mt-6 text-xl text-white/80 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.8s" }}>
             Nous générons des leads qualifiés et augmentons vos ventes grâce à des stratégies marketing digitales sur mesure.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: "0.8s" }}>
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: "1s" }}>
             <Button asChild size="lg" className="px-8 py-7 text-base rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cta-pulse">
               <Link to="/contact">
                 Démarrer un projet

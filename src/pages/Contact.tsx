@@ -43,6 +43,9 @@ const formSchema = z.object({
   service: z.string({
     required_error: "Veuillez sélectionner un service.",
   }),
+  budget: z.string({
+    required_error: "Veuillez sélectionner votre budget publicitaire.",
+  }),
   message: z.string().min(10, {
     message: "Votre message doit contenir au moins 10 caractères.",
   }),
@@ -64,6 +67,7 @@ const Contact = () => {
       phone: "",
       company: "",
       service: "",
+      budget: "",
       message: "",
     },
   });
@@ -198,35 +202,62 @@ const Contact = () => {
                     />
                   </div>
 
-                  <FormField
-                    control={form.control}
-                    name="service"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Service</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Sélectionnez un service" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="meta-ads">Meta Ads</SelectItem>
-                            <SelectItem value="tiktok-ads">TikTok Ads</SelectItem>
-                            <SelectItem value="google-ads">Google Ads</SelectItem>
-                            <SelectItem value="sms-mailing">SMS & Mailing</SelectItem>
-                            <SelectItem value="lead-generation">Lead Generation</SelectItem>
-                            <SelectItem value="automatisation">Automatisation</SelectItem>
-                            <SelectItem value="autre">Autre</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="service"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Service</FormLabel>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Sélectionnez un service" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="meta-ads">Meta Ads</SelectItem>
+                              <SelectItem value="tiktok-ads">TikTok Ads</SelectItem>
+                              <SelectItem value="google-ads">Google Ads</SelectItem>
+                              <SelectItem value="sms-mailing">SMS & Mailing</SelectItem>
+                              <SelectItem value="lead-generation">Lead Generation</SelectItem>
+                              <SelectItem value="automatisation">Automatisation</SelectItem>
+                              <SelectItem value="autre">Autre</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="budget"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Investissement publicitaire mensuel</FormLabel>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Sélectionnez votre budget" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="moins-5000">Moins de 5 000€</SelectItem>
+                              <SelectItem value="5000-10000">Entre 5 000€ et 10 000€</SelectItem>
+                              <SelectItem value="plus-10000">Plus de 10 000€</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
 
                   <FormField
                     control={form.control}
@@ -279,7 +310,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Adresse</h3>
                     <p className="text-muted-foreground">
-                      Notre agence est située au cœur de Paris
+                      60 rue François 1er, 75008 Paris
                     </p>
                   </div>
                 </div>
@@ -291,10 +322,10 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Email</h3>
                     <a
-                      href="mailto:contact@agencemarketing.fr"
+                      href="mailto:contact@goodleft.com"
                       className="text-primary hover:underline"
                     >
-                      contact@agencemarketing.fr
+                      contact@goodleft.com
                     </a>
                   </div>
                 </div>
@@ -306,10 +337,10 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Téléphone</h3>
                     <a
-                      href="tel:+33123456789"
+                      href="tel:+33782979479"
                       className="text-primary hover:underline"
                     >
-                      +33 1 23 45 67 89
+                      +33 7 82 97 94 79
                     </a>
                   </div>
                 </div>
