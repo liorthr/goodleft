@@ -25,6 +25,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import emailjs from 'emailjs-com';
 
 // Form schema
 const formSchema = z.object({
@@ -76,11 +77,42 @@ const Contact = () => {
   const onSubmit = async (values: FormValues) => {
     setIsSubmitting(true);
     
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Format the budget selection to be more readable
+      let formattedBudget = '';
+      switch(values.budget) {
+        case 'moins-5000':
+          formattedBudget = 'Moins de 5 000€';
+          break;
+        case '5000-10000':
+          formattedBudget = 'Entre 5 000€ et 10 000€';
+          break;
+        case 'plus-10000':
+          formattedBudget = 'Plus de 10 000€';
+          break;
+      }
       
-      console.log(values);
+      // Prepare template parameters for EmailJS
+      const templateParams = {
+        from_name: values.name,
+        from_email: values.email,
+        from_phone: values.phone,
+        from_company: values.company,
+        service: values.service,
+        budget: formattedBudget,
+        message: values.message,
+        to_email: 'contact@goodleft.com',
+      };
+      
+      // Send email
+      // Note: You need to replace the service ID and template ID with your own from EmailJS
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your ServiceID
+        'YOUR_TEMPLATE_ID', // Replace with your TemplateID
+        templateParams,
+        'YOUR_USER_ID' // Replace with your UserID
+      );
+      
       setIsSubmitSuccessful(true);
       
       toast({
@@ -91,6 +123,7 @@ const Contact = () => {
       
       form.reset();
     } catch (error) {
+      console.error('Error sending email:', error);
       toast({
         title: "Erreur",
         description: "Une erreur est survenue. Veuillez réessayer.",

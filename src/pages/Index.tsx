@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -105,15 +104,15 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative h-screen min-h-[600px] flex items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-700 overflow-hidden">
+      {/* Hero Section - Changed the background to a teal/blue gradient */}
+      <section className="relative h-screen min-h-[600px] flex items-center justify-center bg-gradient-to-br from-teal-600 to-blue-700 overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 left-0 w-full h-full bg-grid-white/[0.2] [mask-image:linear-gradient(0deg,transparent,rgba(255,255,255,0.7),transparent)]"></div>
-            <div className="absolute -top-[40%] -left-[10%] w-[70%] h-[70%] bg-purple-500/20 rounded-full blur-3xl animate-blob"></div>
-            <div className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%] bg-indigo-500/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
-            <div className="absolute top-[20%] right-[20%] w-[40%] h-[40%] bg-blue-500/20 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
+            <div className="absolute -top-[40%] -left-[10%] w-[70%] h-[70%] bg-cyan-500/20 rounded-full blur-3xl animate-blob"></div>
+            <div className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%] bg-blue-500/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+            <div className="absolute top-[20%] right-[20%] w-[40%] h-[40%] bg-teal-500/20 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
           </div>
         </div>
 

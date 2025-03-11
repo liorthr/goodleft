@@ -243,14 +243,14 @@ interface BlogPost {
   author?: string;
 }
 
-// Sample blog posts data
+// Updated blog posts data with real-looking content and images
 const featuredPost: BlogPost = {
   id: 1,
   title: "Comment optimiser vos campagnes Google Ads pour le secteur du bâtiment",
   slug: "optimiser-google-ads-batiment",
   excerpt: "Découvrez les meilleures stratégies pour maximiser le ROI de vos campagnes Google Ads dans le secteur du bâtiment et générer des leads qualifiés.",
   date: "15 juin 2023",
-  image: "/placeholder.svg",
+  image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1200&h=800",
   category: "Google Ads"
 };
 
@@ -261,7 +261,7 @@ const blogPosts: BlogPost[] = [
     slug: "strategies-lead-generation-batiment",
     excerpt: "Explorez les techniques les plus efficaces pour générer des leads qualifiés dans le secteur du bâtiment et augmenter vos conversions.",
     date: "10 mai 2023",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=800",
     category: "Lead Generation"
   },
   {
@@ -270,7 +270,7 @@ const blogPosts: BlogPost[] = [
     slug: "automatiser-tunnel-vente",
     excerpt: "Comment mettre en place un système d'automatisation efficace pour optimiser votre parcours client et augmenter vos conversions.",
     date: "28 avril 2023",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=1200&h=800",
     category: "Automatisation"
   },
   {
@@ -279,7 +279,7 @@ const blogPosts: BlogPost[] = [
     slug: "tiktok-ads-strategie-marketing",
     excerpt: "Comprendre le potentiel de TikTok Ads pour atteindre de nouvelles audiences et développer votre entreprise dans le secteur du bâtiment.",
     date: "15 avril 2023",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?auto=format&fit=crop&w=1200&h=800",
     category: "TikTok Ads"
   },
   {
@@ -288,7 +288,7 @@ const blogPosts: BlogPost[] = [
     slug: "erreurs-campagnes-facebook-ads",
     excerpt: "Identifiez et corrigez les erreurs courantes qui limitent les performances de vos campagnes publicitaires sur Facebook et Instagram.",
     date: "2 avril 2023",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1614332287897-cdc485fa562d?auto=format&fit=crop&w=1200&h=800",
     category: "Meta Ads"
   },
   {
@@ -297,7 +297,7 @@ const blogPosts: BlogPost[] = [
     slug: "strategie-sms-marketing-efficace",
     excerpt: "Guide complet pour créer et déployer une stratégie de SMS marketing qui génère des résultats concrets pour votre entreprise.",
     date: "20 mars 2023",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=1200&h=800",
     category: "SMS & Mailing"
   },
   {
@@ -306,7 +306,7 @@ const blogPosts: BlogPost[] = [
     slug: "kpis-mesurer-succes-marketing-digital",
     excerpt: "Quels indicateurs suivre pour évaluer précisément les performances de vos campagnes marketing et optimiser votre ROI.",
     date: "10 mars 2023",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1533750446969-255b5f7e52a1?auto=format&fit=crop&w=1200&h=800",
     category: "Analyse & Reporting"
   }
 ];
