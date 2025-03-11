@@ -96,6 +96,7 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     overflow-x: hidden;
+    background: linear-gradient(135deg, #03173B 0%, #093383 100%);
   }
 
   h1, h2, h3, h4, h5, h6 {
