@@ -53,49 +53,50 @@ const Index = () => {
       observerRef.current?.observe(element);
     });
 
-    // Animation for hero text
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let interval: number | null = null;
-    
-    const animateText = (el: HTMLElement) => {
-      let iteration = 0;
+    // Animation for hero text - more fluid and modern version
+    const animateText = (el: HTMLElement, index: number) => {
+      if (!el) return;
+      
       const originalText = el.dataset.value || el.innerText;
+      el.innerHTML = '';
       
-      clearInterval(interval as number);
-      
-      interval = window.setInterval(() => {
-        el.innerText = el.innerText
-          .split("")
-          .map((letter, index) => {
-            if (index < iteration) {
-              return originalText[index];
-            }
-            return letters[Math.floor(Math.random() * 26)];
-          })
-          .join("");
+      // Create spans for each character for individual animation
+      originalText.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.style.opacity = '0';
+        span.style.display = 'inline-block';
+        span.style.transform = 'translateY(20px)';
+        span.style.transition = `opacity 0.8s ease, transform 0.8s ease`;
+        span.style.transitionDelay = `${index * 0.3 + i * 0.03}s`;
         
-        if (iteration >= originalText.length) {
-          clearInterval(interval as number);
+        // Handle spaces
+        if (char === ' ') {
+          span.innerHTML = '&nbsp;';
         }
         
-        iteration += 1 / 3;
-      }, 30);
+        el.appendChild(span);
+        
+        // Trigger animation after a small delay
+        setTimeout(() => {
+          span.style.opacity = '1';
+          span.style.transform = 'translateY(0)';
+        }, 10);
+      });
     };
 
-    // Apply text animation to specific elements
-    textElements.current.forEach(el => {
+    // Apply to hero text elements with a delay
+    textElements.current.forEach((el, index) => {
       if (el) {
         el.dataset.value = el.innerText;
-        animateText(el);
+        // Start animation with a staggered delay
+        setTimeout(() => animateText(el, index), index * 300);
       }
     });
 
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
-      }
-      if (interval) {
-        clearInterval(interval);
       }
     };
   }, []);
@@ -123,10 +124,10 @@ const Index = () => {
             </span>
           </div>
           <h1 className="mt-6 text-4xl md:text-6xl font-bold text-white max-w-4xl mx-auto leading-tight">
-            <span ref={el => textElements.current[0] = el} className="block mb-2 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+            <span ref={el => textElements.current[0] = el} className="block mb-2">
               Marketing Digital Expert
             </span>
-            <span ref={el => textElements.current[1] = el} className="block animate-fade-in" style={{ animationDelay: "0.6s" }}>
+            <span ref={el => textElements.current[1] = el} className="block">
               pour le Secteur du Bâtiment
             </span>
           </h1>
