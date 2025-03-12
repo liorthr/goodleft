@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Mail, Phone, MapPin, Send, Check } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Check, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -150,7 +150,7 @@ const Contact = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero Section - Improved Mobile Title */}
       <section className="pt-32 pb-20 bg-gradient-to-r from-primary/10 to-blue-500/10">
         <div className="container text-center">
           <div className="inline-block animate-fade-in">
@@ -158,7 +158,7 @@ const Contact = () => {
               Contactez-nous
             </span>
           </div>
-          <h1 className="mt-6 text-4xl md:text-5xl font-bold max-w-3xl mx-auto leading-tight animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <h1 className="mt-6 text-4xl md:text-5xl font-bold max-w-3xl mx-auto leading-tight animate-fade-in md:leading-snug" style={{ animationDelay: "0.2s", wordBreak: "keep-all", hyphens: "auto" }}>
             Parlons de votre projet
           </h1>
           <p className="mt-6 text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.4s" }}>
@@ -377,6 +377,27 @@ const Contact = () => {
                     </a>
                   </div>
                 </div>
+
+                {/* WhatsApp Button */}
+                <div className="flex items-start">
+                  <div className="bg-green-500 p-3 rounded-lg text-white mr-4">
+                    <MessageCircle className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-1">WhatsApp</h3>
+                    <a
+                      href="https://api.whatsapp.com/send/?phone=972586841001&text&type=phone_number&app_absent=0"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      <Button variant="outline" className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100 hover:text-green-800">
+                        <MessageCircle className="mr-2 h-4 w-4" />
+                        Discuter sur WhatsApp
+                      </Button>
+                    </a>
+                  </div>
+                </div>
               </div>
 
               <div className="mt-12">
@@ -402,6 +423,17 @@ const Contact = () => {
                 <p className="text-muted-foreground mb-4">
                   Nous nous engageons à vous répondre dans les 24 heures ouvrées suivant votre demande.
                 </p>
+                <a
+                  href="https://api.whatsapp.com/send/?phone=972586841001&text&type=phone_number&app_absent=0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full block"
+                >
+                  <Button variant="default" className="w-full bg-green-600 hover:bg-green-700 text-white">
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    Contactez-nous sur WhatsApp
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
