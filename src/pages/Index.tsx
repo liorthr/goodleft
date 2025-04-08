@@ -33,7 +33,6 @@ import CTASection from "@/components/CTASection";
 const Index = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const textElements = useRef<(HTMLElement | null)[]>([]);
-  const videoScriptLoaded = useRef(false);
 
   useEffect(() => {
     // Intersection Observer for scroll animations
@@ -94,15 +93,6 @@ const Index = () => {
         setTimeout(() => animateText(el, index), index * 300);
       }
     });
-
-    // Load Vimeo script
-    if (!videoScriptLoaded.current) {
-      const script = document.createElement('script');
-      script.src = 'https://player.vimeo.com/api/player.js';
-      script.async = true;
-      document.body.appendChild(script);
-      videoScriptLoaded.current = true;
-    }
 
     return () => {
       if (observerRef.current) {
@@ -186,30 +176,6 @@ const Index = () => {
               value="300 000+"
               label="Leads générés"
             />
-          </div>
-        </div>
-      </section>
-
-      {/* Vidéo de Présentation Section */}
-      <section className="py-16">
-        <div className="container">
-          <SectionHeading
-            title="Découvrez notre expertise"
-            subtitle="Regardez notre vidéo de présentation pour comprendre comment nous pouvons vous aider à développer votre entreprise du bâtiment."
-            centered
-            chip="Vidéo"
-          />
-          
-          <div className="max-w-4xl mx-auto mt-10 reveal shadow-xl rounded-2xl overflow-hidden">
-            <div className="relative" style={{padding:"75% 0 0 0"}}>
-              <iframe 
-                src="https://player.vimeo.com/video/1073570656?h=0b9d177449&badge=0&autopause=0&player_id=0&app_id=58479" 
-                frameBorder="0" 
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
-                style={{position:"absolute", top:0, left:0, width:"100%", height:"100%"}} 
-                title="Vidéo de présentation"
-              ></iframe>
-            </div>
           </div>
         </div>
       </section>
