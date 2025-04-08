@@ -191,7 +191,7 @@ const Index = () => {
       </section>
 
       {/* Vidéo de Présentation Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16">
         <div className="container">
           <SectionHeading
             title="Découvrez notre expertise"
