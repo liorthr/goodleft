@@ -144,7 +144,7 @@ const BlogPost = () => {
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mt-12 mb-8">
-          <TagIcon className="h-4 w-4 text-muted-foreground" />
+          <Tag className="h-4 w-4 text-muted-foreground" />
           <span className="text-sm text-muted-foreground mr-2">Tags:</span>
           {post.tags && post.tags.length > 0 ? (
             post.tags.map((tag, index) => (
