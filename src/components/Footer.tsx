@@ -26,10 +26,10 @@ const Footer = () => {
               Votre partenaire marketing digital à Paris, spécialisé dans le secteur du bâtiment et bien plus encore.
             </p>
             <div className="flex space-x-4">
-              <SocialLink href="#" icon={<Facebook className="h-5 w-5" />} />
-              <SocialLink href="#" icon={<Instagram className="h-5 w-5" />} />
-              <SocialLink href="#" icon={<Twitter className="h-5 w-5" />} />
-              <SocialLink href="#" icon={<Linkedin className="h-5 w-5" />} />
+              <SocialLink href="https://www.linkedin.com/company/goodleft/?viewAsMember=true" icon={<Linkedin className="h-5 w-5" />} />
+              <SocialLink href="https://www.instagram.com/liorthr/" icon={<Instagram className="h-5 w-5" />} />
+              <SocialLink href="https://www.instagram.com/liorthr/" icon={<Facebook className="h-5 w-5" />} />
+              <SocialLink href="https://www.linkedin.com/in/lior-tahar-74934b29a/" icon={<Twitter className="h-5 w-5" />} />
             </div>
           </div>
 
