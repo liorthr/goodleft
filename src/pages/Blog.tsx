@@ -1,7 +1,6 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Search, Clock, ChevronRight, Plus } from "lucide-react";
+import { Search, Clock, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
@@ -135,12 +134,6 @@ const Blog = () => {
               chip="Articles récents"
               className="mb-0"
             />
-            <Button asChild>
-              <Link to="/admin/blog/new" className="flex items-center">
-                <Plus className="mr-2 h-4 w-4" />
-                Nouvel article
-              </Link>
-            </Button>
           </div>
 
           {filteredPosts.length > 0 ? (
