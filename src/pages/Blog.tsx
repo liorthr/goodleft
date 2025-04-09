@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Search, Clock, ChevronRight } from "lucide-react";
+import { Search, Clock, ChevronRight, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
@@ -128,11 +128,20 @@ const Blog = () => {
       {/* Blog Posts */}
       <section className="py-16 bg-gray-50">
         <div className="container">
-          <SectionHeading
-            title="Tous les articles"
-            subtitle="Explorez nos dernières publications sur le marketing digital et les stratégies de lead generation."
-            chip="Articles récents"
-          />
+          <div className="flex justify-between items-center mb-12">
+            <SectionHeading
+              title="Tous les articles"
+              subtitle="Explorez nos dernières publications sur le marketing digital et les stratégies de lead generation."
+              chip="Articles récents"
+              className="mb-0"
+            />
+            <Button asChild>
+              <Link to="/admin/blog/new" className="flex items-center">
+                <Plus className="mr-2 h-4 w-4" />
+                Nouvel article
+              </Link>
+            </Button>
+          </div>
 
           {filteredPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

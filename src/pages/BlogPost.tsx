@@ -144,14 +144,24 @@ const BlogPost = () => {
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mt-12 mb-8">
-          <Tag className="h-4 w-4 text-muted-foreground" />
+          <TagIcon className="h-4 w-4 text-muted-foreground" />
           <span className="text-sm text-muted-foreground mr-2">Tags:</span>
-          <span className="bg-muted px-2 py-1 rounded text-xs">
-            {post.category}
-          </span>
-          <span className="bg-muted px-2 py-1 rounded text-xs">leads</span>
-          <span className="bg-muted px-2 py-1 rounded text-xs">bâtiment</span>
-          <span className="bg-muted px-2 py-1 rounded text-xs">énergies renouvelables</span>
+          {post.tags && post.tags.length > 0 ? (
+            post.tags.map((tag, index) => (
+              <span key={index} className="bg-muted px-2 py-1 rounded text-xs">
+                {tag}
+              </span>
+            ))
+          ) : (
+            <>
+              <span className="bg-muted px-2 py-1 rounded text-xs">
+                {post.category}
+              </span>
+              <span className="bg-muted px-2 py-1 rounded text-xs">leads</span>
+              <span className="bg-muted px-2 py-1 rounded text-xs">bâtiment</span>
+              <span className="bg-muted px-2 py-1 rounded text-xs">énergies renouvelables</span>
+            </>
+          )}
         </div>
 
         {/* Back button */}
