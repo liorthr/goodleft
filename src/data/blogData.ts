@@ -588,7 +588,6 @@ export const blogPosts: BlogPost[] = [
       <p>Contactez-nous pour une analyse personnalisée de vos besoins et la mise en place d'une stratégie d'acquisition sur mesure.</p>
     `
   },
-  // Continue with the rest of the blog posts - I'll add a few more as examples
   {
     id: 6,
     title: "Panorama des leads produits dans le secteur de la rénovation énergétique",
@@ -855,7 +854,6 @@ export const blogPosts: BlogPost[] = [
       <p>N'hésitez pas à nous contacter pour obtenir un devis personnalisé et découvrir notre offre complète de leads pour le secteur des pompes à chaleur.</p>
     `
   },
-  // Add more blog posts with content here
   {
     id: 8,
     title: "Coût des leads isolation thermique extérieure selon les régions françaises",
@@ -1023,42 +1021,3 @@ export const blogPosts: BlogPost[] = [
     <p>Contactez-nous pour obtenir un devis personnalisé selon vos zones d'intervention et découvrir notre offre complète de leads pour l'isolation thermique extérieure.</p>`
   }
 ];
-
-3. Now, let's update the App.tsx file to add a route for individual blog posts:
-
-<lov-write file_path="src/App.tsx">
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import Services from "./pages/Services";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
-
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/contact" element={<Contact />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
-
-export default App;
