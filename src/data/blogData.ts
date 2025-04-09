@@ -1,6 +1,3 @@
-import buildingImg from "@/assets/building.jpg";
-import marketingImg from "@/assets/marketing.jpg";
-import solarPanelImg from "@/assets/solar-panel.jpg";
 
 export interface BlogPost {
   id: string;
@@ -63,7 +60,7 @@ export const blogPosts: BlogPost[] = [
     `,
     date: "15 Mai 2024",
     category: "Bâtiment",
-    image: buildingImg.src,
+    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1170&auto=format&fit=crop",
     tags: ["leads", "bâtiment", "qualifié"],
   },
   {
@@ -112,7 +109,7 @@ export const blogPosts: BlogPost[] = [
     `,
     date: "8 Mai 2024",
     category: "Marketing",
-    image: marketingImg.src,
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1115&auto=format&fit=crop",
     tags: ["marketing digital", "BTP", "SEO", "publicité en ligne"],
   },
   {
@@ -161,7 +158,7 @@ export const blogPosts: BlogPost[] = [
     `,
     date: "1 Mai 2024",
     category: "Énergies renouvelables",
-    image: solarPanelImg.src,
+    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1172&auto=format&fit=crop",
     tags: ["énergies renouvelables", "leads", "transition énergétique"],
   },
 ];
