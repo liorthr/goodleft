@@ -19,7 +19,8 @@ import {
   Facebook, 
   TrendingUp, 
   Gauge, 
-  Users
+  Users,
+  Monitor
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -197,6 +198,13 @@ const Index = () => {
               description="Campagnes Facebook et Instagram optimisées pour générer des leads qualifiés."
               link="/services#metaads"
               delay={100}
+            />
+            <ServiceCard
+              icon={<Monitor className="h-6 w-6" />}
+              title="Native Ads"
+              description="Campagnes Taboola et Outbrain pour scaler votre acquisition avec des budgets jusqu'à 10K€/jour."
+              link="/services#nativeads"
+              delay={150}
             />
             <ServiceCard
               icon={<Zap className="h-6 w-6" />}

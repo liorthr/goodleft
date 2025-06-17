@@ -7,7 +7,8 @@ import {
   MessageSquare, 
   MousePointerClick, 
   Gauge,
-  ArrowRight
+  ArrowRight,
+  Monitor
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -96,6 +97,19 @@ const ServicesDetailSection = () => {
         "Optimisation continue pour maximiser le ROI",
         "Retargeting pour convertir les prospects hésitants",
         "Analyse détaillée des performances"
+      ]
+    },
+    {
+      id: "nativeads",
+      icon: <Monitor className="h-10 w-10" />,
+      title: "Native Ads",
+      description: "Campagnes Taboola, Outbrain et autres plateformes natives pour scaler votre acquisition avec des budgets élevés.",
+      features: [
+        "Le meilleur levier pour scaler votre acquisition",
+        "Capacité de dépenses publicitaires jusqu'à 10K€/jour",
+        "Ciblage précis des audiences seniors",
+        "Parfait pour les secteurs du bâtiment, santé, immobilier et finance",
+        "Contenu natif intégré pour une meilleure conversion"
       ]
     },
     {
