@@ -193,7 +193,7 @@ const Index = () => {
             />
             <StatCard
               icon={<Users className="h-6 w-6" />}
-              value="22"
+              value="47"
               label="Clients satisfaits"
             />
             <StatCard
