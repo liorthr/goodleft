@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -147,6 +146,31 @@ const Index = () => {
                 Nos services
               </Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="py-20 bg-white">
+        <div className="container">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Découvrez notre approche
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Une présentation de notre méthode pour générer des leads qualifiés et développer votre entreprise.
+              </p>
+            </div>
+            <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+              <iframe 
+                src="https://player.vimeo.com/video/1094103975?h=f4a439f1f7&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+                className="w-full h-full"
+                frameBorder="0" 
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                title="Agence Goodleft"
+              />
+            </div>
           </div>
         </div>
       </section>
