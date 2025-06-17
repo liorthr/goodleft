@@ -188,7 +188,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <StatCard
               icon={<BarChart className="h-6 w-6" />}
-              value="1M€+"
+              value="2M€+"
               label="Budget d'ads sous gestion"
             />
             <StatCard
