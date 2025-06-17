@@ -1,156 +1,15 @@
 
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Mail, Phone, MapPin, Send, Check, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import emailjs from 'emailjs-com';
-
-// Form schema
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Le nom doit contenir au moins 2 caractères.",
-  }),
-  email: z.string().email({
-    message: "Veuillez entrer une adresse email valide.",
-  }),
-  phone: z.string().min(10, {
-    message: "Veuillez entrer un numéro de téléphone valide.",
-  }),
-  company: z.string().min(2, {
-    message: "Le nom de l'entreprise doit contenir au moins 2 caractères.",
-  }),
-  service: z.string({
-    required_error: "Veuillez sélectionner un service.",
-  }),
-  budget: z.string({
-    required_error: "Veuillez sélectionner votre budget publicitaire.",
-  }),
-  message: z.string().min(10, {
-    message: "Votre message doit contenir au moins 10 caractères.",
-  }),
-});
-
-type FormValues = z.infer<typeof formSchema>;
 
 const Contact = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
-
-  // Initialize form
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      service: "",
-      budget: "",
-      message: "",
-    },
-  });
-
-  // Handle form submission
-  const onSubmit = async (values: FormValues) => {
-    setIsSubmitting(true);
-    
-    try {
-      // Format the budget selection to be more readable
-      let formattedBudget = '';
-      switch(values.budget) {
-        case 'moins-5000':
-          formattedBudget = 'Moins de 5 000€';
-          break;
-        case '5000-10000':
-          formattedBudget = 'Entre 5 000€ et 10 000€';
-          break;
-        case 'plus-10000':
-          formattedBudget = 'Plus de 10 000€';
-          break;
-      }
-      
-      // Prepare template parameters for EmailJS
-      const templateParams = {
-        from_name: values.name,
-        from_email: values.email,
-        from_phone: values.phone,
-        from_company: values.company,
-        service: values.service,
-        budget: formattedBudget,
-        message: values.message,
-        to_email: 'contact@goodleft.com',
-      };
-      
-      // Send email
-      // Note: You need to replace the service ID and template ID with your own from EmailJS
-      await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your ServiceID
-        'YOUR_TEMPLATE_ID', // Replace with your TemplateID
-        templateParams,
-        'YOUR_USER_ID' // Replace with your UserID
-      );
-      
-      setIsSubmitSuccessful(true);
-      
-      toast({
-        title: "Formulaire envoyé",
-        description: "Nous vous contacterons très bientôt.",
-        variant: "default",
-      });
-      
-      form.reset();
-    } catch (error) {
-      console.error('Error sending email:', error);
-      toast({
-        title: "Erreur",
-        description: "Une erreur est survenue. Veuillez réessayer.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  useEffect(() => {
-    let timeout: number;
-    
-    if (isSubmitSuccessful) {
-      timeout = window.setTimeout(() => {
-        setIsSubmitSuccessful(false);
-      }, 5000);
-    }
-    
-    return () => clearTimeout(timeout);
-  }, [isSubmitSuccessful]);
-
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      {/* Hero Section - Improved Mobile Title */}
+      {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-r from-primary/10 to-blue-500/10">
         <div className="container text-center">
           <div className="inline-block animate-fade-in">
@@ -170,271 +29,130 @@ const Contact = () => {
       {/* Contact Section */}
       <section className="py-16 md:py-24">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20">
-            {/* Contact Form */}
-            <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              <h2 className="text-2xl font-bold mb-6">Envoyez-nous un message</h2>
-              
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Nom</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Votre nom" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input type="email" placeholder="votre@email.com" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Téléphone</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Votre numéro" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="company"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Entreprise</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Nom de votre entreprise" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="service"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Service</FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                          >
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Sélectionnez un service" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="meta-ads">Meta Ads</SelectItem>
-                              <SelectItem value="tiktok-ads">TikTok Ads</SelectItem>
-                              <SelectItem value="google-ads">Google Ads</SelectItem>
-                              <SelectItem value="sms-mailing">SMS & Mailing</SelectItem>
-                              <SelectItem value="lead-generation">Lead Generation</SelectItem>
-                              <SelectItem value="automatisation">Automatisation</SelectItem>
-                              <SelectItem value="autre">Autre</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="budget"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Investissement publicitaire mensuel</FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                          >
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Sélectionnez votre budget" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="moins-5000">Moins de 5 000€</SelectItem>
-                              <SelectItem value="5000-10000">Entre 5 000€ et 10 000€</SelectItem>
-                              <SelectItem value="plus-10000">Plus de 10 000€</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Message</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Décrivez votre projet ou votre besoin..."
-                            className="resize-none min-h-[120px]"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <Button
-                    type="submit"
-                    className="w-full py-6"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      "Envoi en cours..."
-                    ) : isSubmitSuccessful ? (
-                      <>
-                        <Check className="mr-2 h-4 w-4" /> Message envoyé
-                      </>
-                    ) : (
-                      <>
-                        <Send className="mr-2 h-4 w-4" /> Envoyer le message
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </Form>
+          <div className="max-w-4xl mx-auto">
+            {/* WhatsApp Priority Section */}
+            <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-8 mb-12 text-center animate-fade-in">
+              <div className="bg-green-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MessageCircle className="h-8 w-8 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold mb-4">Contactez-nous sur WhatsApp</h2>
+              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Pour une réponse rapide et personnalisée, contactez-nous directement sur WhatsApp. 
+                Nous vous répondons généralement dans les 30 minutes pendant nos heures d'ouverture.
+              </p>
+              <a
+                href="https://api.whatsapp.com/send/?phone=972586841001&text=Bonjour, je vous contacte depuis votre site web Goodleft.&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block"
+              >
+                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg">
+                  <MessageCircle className="mr-3 h-6 w-6" />
+                  Démarrer une conversation
+                </Button>
+              </a>
             </div>
 
-            {/* Contact Information */}
-            <div className="lg:pt-8 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-              <h2 className="text-2xl font-bold mb-6">Nos coordonnées</h2>
-              
-              <div className="space-y-8">
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-lg text-primary mr-4">
-                    <MapPin className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Adresse</h3>
-                    <p className="text-muted-foreground">
-                      60 rue François 1er, 75008 Paris
-                    </p>
-                  </div>
+            {/* Contact Information Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center bg-white rounded-xl p-6 border border-gray-100 shadow-sm animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                <div className="bg-primary/10 p-4 rounded-lg text-primary mx-auto w-fit mb-4">
+                  <Phone className="h-8 w-8" />
                 </div>
-
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-lg text-primary mr-4">
-                    <Mail className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Email</h3>
-                    <a
-                      href="mailto:contact@goodleft.com"
-                      className="text-primary hover:underline"
-                    >
-                      contact@goodleft.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-lg text-primary mr-4">
-                    <Phone className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Téléphone</h3>
-                    <a
-                      href="tel:+33782979479"
-                      className="text-primary hover:underline"
-                    >
-                      +33 7 82 97 94 79
-                    </a>
-                  </div>
-                </div>
-
-                {/* WhatsApp Button */}
-                <div className="flex items-start">
-                  <div className="bg-green-500 p-3 rounded-lg text-white mr-4">
-                    <MessageCircle className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">WhatsApp</h3>
-                    <a
-                      href="https://api.whatsapp.com/send/?phone=972586841001&text&type=phone_number&app_absent=0"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2"
-                    >
-                      <Button variant="outline" className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100 hover:text-green-800">
-                        <MessageCircle className="mr-2 h-4 w-4" />
-                        Discuter sur WhatsApp
-                      </Button>
-                    </a>
-                  </div>
-                </div>
+                <h3 className="font-semibold text-lg mb-2">Téléphone</h3>
+                <a
+                  href="tel:+33782979479"
+                  className="text-primary hover:underline text-lg font-medium"
+                >
+                  +33 7 82 97 94 79
+                </a>
               </div>
 
-              <div className="mt-12">
-                <h3 className="font-semibold text-lg mb-6">Horaires d'ouverture</h3>
+              <div className="text-center bg-white rounded-xl p-6 border border-gray-100 shadow-sm animate-fade-in" style={{ animationDelay: "0.3s" }}>
+                <div className="bg-primary/10 p-4 rounded-lg text-primary mx-auto w-fit mb-4">
+                  <Mail className="h-8 w-8" />
+                </div>
+                <h3 className="font-semibold text-lg mb-2">Email</h3>
+                <a
+                  href="mailto:contact@goodleft.com"
+                  className="text-primary hover:underline text-lg font-medium"
+                >
+                  contact@goodleft.com
+                </a>
+              </div>
+
+              <div className="text-center bg-white rounded-xl p-6 border border-gray-100 shadow-sm animate-fade-in" style={{ animationDelay: "0.4s" }}>
+                <div className="bg-primary/10 p-4 rounded-lg text-primary mx-auto w-fit mb-4">
+                  <MapPin className="h-8 w-8" />
+                </div>
+                <h3 className="font-semibold text-lg mb-2">Adresse</h3>
+                <p className="text-muted-foreground">
+                  60 rue François 1er<br />
+                  75008 Paris
+                </p>
+              </div>
+            </div>
+
+            {/* Additional Information */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Opening Hours */}
+              <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm animate-fade-in" style={{ animationDelay: "0.5s" }}>
+                <h3 className="font-semibold text-xl mb-6">Horaires d'ouverture</h3>
                 <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span>Lundi - Vendredi</span>
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Lundi - Vendredi</span>
                     <span className="font-medium">9:00 - 18:00</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Samedi</span>
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Samedi</span>
                     <span className="font-medium">Sur rendez-vous</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Dimanche</span>
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Dimanche</span>
                     <span className="font-medium">Fermé</span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-12 p-6 bg-gradient-to-r from-primary/10 to-blue-500/5 rounded-xl">
-                <h3 className="font-semibold text-lg mb-3">Réponse rapide</h3>
-                <p className="text-muted-foreground mb-4">
-                  Nous nous engageons à vous répondre dans les 24 heures ouvrées suivant votre demande.
+              {/* Quick Response */}
+              <div className="bg-gradient-to-br from-primary/10 to-blue-500/5 rounded-xl p-6 animate-fade-in" style={{ animationDelay: "0.6s" }}>
+                <h3 className="font-semibold text-xl mb-4">Réponse rapide garantie</h3>
+                <p className="text-muted-foreground mb-6">
+                  Nous nous engageons à vous répondre dans les 24 heures ouvrées suivant votre demande, et souvent beaucoup plus rapidement sur WhatsApp.
                 </p>
-                <a
-                  href="https://api.whatsapp.com/send/?phone=972586841001&text&type=phone_number&app_absent=0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full block"
-                >
-                  <Button variant="default" className="w-full bg-green-600 hover:bg-green-700 text-white">
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    Contactez-nous sur WhatsApp
-                  </Button>
-                </a>
+                <div className="space-y-3">
+                  <div className="flex items-center">
+                    <MessageCircle className="h-5 w-5 text-green-600 mr-3" />
+                    <span className="text-sm">WhatsApp: 30 minutes</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Mail className="h-5 w-5 text-primary mr-3" />
+                    <span className="text-sm">Email: 24 heures</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Phone className="h-5 w-5 text-primary mr-3" />
+                    <span className="text-sm">Téléphone: Immédiat</span>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            {/* Final CTA */}
+            <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: "0.7s" }}>
+              <h3 className="text-2xl font-bold mb-4">Prêt à développer votre entreprise ?</h3>
+              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Contactez-nous dès maintenant pour discuter de vos objectifs et découvrir comment nous pouvons vous aider.
+              </p>
+              <a
+                href="https://api.whatsapp.com/send/?phone=972586841001&text=Bonjour, je souhaite discuter de mes objectifs marketing avec votre équipe.&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg">
+                  <MessageCircle className="mr-3 h-6 w-6" />
+                  Commencer maintenant
+                </Button>
+              </a>
             </div>
           </div>
         </div>
