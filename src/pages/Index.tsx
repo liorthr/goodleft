@@ -198,7 +198,7 @@ const Index = () => {
             />
             <StatCard
               icon={<MousePointerClick className="h-6 w-6" />}
-              value="300 000+"
+              value="600 000+"
               label="Leads générés"
             />
           </div>
