@@ -1,6 +1,8 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Facebook, Instagram, Smartphone, Search, Target, Building, Heart, CreditCard } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import StatsCard from "@/components/StatsCard";
 import ServiceCard from "@/components/ServiceCard";
@@ -23,51 +25,56 @@ const Index = () => {
       description:
         "Campagnes Facebook et Instagram optimisées pour générer des leads qualifiés et augmenter votre visibilité.",
       link: "/services#metaads",
+      icon: <Facebook className="h-6 w-6" />,
+    },
+    {
+      title: "Native Ads",
+      description:
+        "Campagnes Taboola et Outbrain pour scaler jusqu'à 10K€/jour. Parfait pour cibler les séniors dans le bâtiment, santé, immobilier et finance.",
+      link: "/services#nativeads",
+      icon: <Target className="h-6 w-6" />,
     },
     {
       title: "TikTok Ads",
       description:
         "Stratégies innovantes sur TikTok pour atteindre de nouvelles audiences et renforcer votre image de marque.",
       link: "/services#tiktokads",
+      icon: <Smartphone className="h-6 w-6" />,
     },
     {
       title: "Google Ads",
       description:
         "Campagnes AdWords pour capturer l'intention d'achat et maximiser votre visibilité auprès de prospects qualifiés.",
       link: "/services#googleads",
+      icon: <Search className="h-6 w-6" />,
     },
   ]);
 
   const [industries, setIndustries] = useState([
     {
-      title: "Bâtiment",
-      description:
-        "Solutions marketing sur mesure pour les entreprises du bâtiment, de la construction à la rénovation.",
+      name: "Bâtiment",
+      icon: <Building className="h-6 w-6" />,
     },
     {
-      title: "Santé",
-      description:
-        "Stratégies digitales pour les professionnels de la santé, des cliniques aux praticiens indépendants.",
+      name: "Santé",
+      icon: <Heart className="h-6 w-6" />,
     },
     {
-      title: "Finance",
-      description:
-        "Marketing de pointe pour les institutions financières, des banques aux assurances.",
+      name: "Finance",
+      icon: <CreditCard className="h-6 w-6" />,
     },
   ]);
 
   const [testimonials, setTestimonials] = useState([
     {
-      name: "Jean Dupont",
-      company: "Entreprise Bâtiment+",
-      testimonial:
+      quote:
         "Goodleft a transformé notre approche marketing. Nos leads ont augmenté de 40% en seulement trois mois !",
+      author: "Jean Dupont - Entreprise Bâtiment+",
     },
     {
-      name: "Sophie Martin",
-      company: "Clinique Bien-Être",
-      testimonial:
+      quote:
         "Grâce à Goodleft, nous avons attiré de nouveaux patients et amélioré notre image de marque en ligne.",
+      author: "Sophie Martin - Clinique Bien-Être",
     },
   ]);
 
@@ -142,7 +149,7 @@ const Index = () => {
       {/* Stats Section */}
       <section className="py-16 bg-gray-50">
         <div className="container">
-          <SectionHeading title="Nos chiffres clés" description="Des résultats concrets pour nos clients." />
+          <SectionHeading title="Nos chiffres clés" subtitle="Des résultats concrets pour nos clients." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
             {stats.map((stat, index) => (
               <StatsCard key={index} label={stat.label} value={stat.value} />
@@ -154,14 +161,15 @@ const Index = () => {
       {/* Services Section */}
       <section className="py-20">
         <div className="container">
-          <SectionHeading title="Nos services" description="Des solutions marketing adaptées à vos besoins." />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+          <SectionHeading title="Nos services" subtitle="Des solutions marketing adaptées à vos besoins." />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
             {services.map((service, index) => (
               <ServiceCard
                 key={index}
                 title={service.title}
                 description={service.description}
                 link={service.link}
+                icon={service.icon}
               />
             ))}
           </div>
@@ -171,13 +179,13 @@ const Index = () => {
       {/* Industries Section */}
       <section className="py-16 bg-gray-50">
         <div className="container">
-          <SectionHeading title="Nos secteurs d'expertise" description="Nous accompagnons les entreprises de divers secteurs." />
+          <SectionHeading title="Nos secteurs d'expertise" subtitle="Nous accompagnons les entreprises de divers secteurs." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
             {industries.map((industry, index) => (
               <IndustryCard
                 key={index}
-                title={industry.title}
-                description={industry.description}
+                name={industry.name}
+                icon={industry.icon}
               />
             ))}
           </div>
@@ -187,14 +195,13 @@ const Index = () => {
       {/* Testimonials Section */}
       <section className="py-20">
         <div className="container">
-          <SectionHeading title="Témoignages clients" description="Ce que nos clients disent de nous." />
+          <SectionHeading title="Témoignages clients" subtitle="Ce que nos clients disent de nous." />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
                 key={index}
-                name={testimonial.name}
-                company={testimonial.company}
-                testimonial={testimonial.testimonial}
+                quote={testimonial.quote}
+                author={testimonial.author}
               />
             ))}
           </div>
