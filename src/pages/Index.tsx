@@ -375,22 +375,22 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <TestimonialCard
-              quote="Toujours au top. Les leads sont qualifiés."
+              quote="Toujours au top. Les leads sont qualifiés et le suivi est impeccable. Un grand merci à Lior pour son accompagnement personnalisé !"
               author="David T."
               delay={100}
             />
             <TestimonialCard
-              quote="Sérieux et disponible."
+              quote="Sérieux et disponible. L'équipe répond rapidement à nos questions et nous guide efficacement dans nos campagnes."
               author="John L."
               delay={200}
             />
             <TestimonialCard
-              quote="Je recommande fortement."
+              quote="Je recommande fortement cette agence. Résultats au rendez-vous et expertise reconnue. Un grand merci à Lior pour sa réactivité !"
               author="David S."
               delay={300}
             />
             <TestimonialCard
-              quote="Très bon investissement !"
+              quote="Très bon investissement ! Notre ROI a considérablement augmenté depuis le début de notre collaboration."
               author="Jerome"
               delay={400}
             />
