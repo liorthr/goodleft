@@ -127,7 +127,7 @@ const Index = () => {
             <span ref={el => textElements.current[0] = el} className="block mb-2">
               Marketing Digital Expert
             </span>
-            <span ref={el => textElements.current[1] = el} className="block">
+            <span ref={el => textElements.current[1] = el} className="block text-3xl md:text-6xl">
               pour le Secteur du Bâtiment
             </span>
           </h1>
