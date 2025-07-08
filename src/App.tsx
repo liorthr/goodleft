@@ -15,6 +15,9 @@ import Terms from "./pages/Terms";
 import WhatsAppButton from "./components/WhatsAppButton";
 import AddBlogArticle from "./pages/AddBlogArticle";
 import ScrollToTop from "./components/ScrollToTop";
+import GoogleAds from "./pages/GoogleAds";
+import NativeAds from "./pages/NativeAds";
+import MetaAds from "./pages/MetaAds";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +31,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/google-ads" element={<GoogleAds />} />
+          <Route path="/services/native-ads" element={<NativeAds />} />
+          <Route path="/services/meta-ads" element={<MetaAds />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
