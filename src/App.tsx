@@ -18,6 +18,9 @@ import ScrollToTop from "./components/ScrollToTop";
 import GoogleAds from "./pages/GoogleAds";
 import NativeAds from "./pages/NativeAds";
 import MetaAds from "./pages/MetaAds";
+import Emailing from "./pages/Emailing";
+import SEO from "./pages/SEO";
+import LinkedIn from "./pages/LinkedIn";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +37,9 @@ const App = () => (
           <Route path="/services/google-ads" element={<GoogleAds />} />
           <Route path="/services/native-ads" element={<NativeAds />} />
           <Route path="/services/meta-ads" element={<MetaAds />} />
+          <Route path="/services/emailing" element={<Emailing />} />
+          <Route path="/services/seo" element={<SEO />} />
+          <Route path="/services/linkedin" element={<LinkedIn />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
