@@ -137,10 +137,10 @@ const Navbar = () => {
                 </NavLink>
                 
                 {/* Mobile Services Dropdown */}
-                <div className="flex flex-col space-y-3">
+                <div className="flex flex-col">
                   <button
                     onClick={toggleServices}
-                    className={`flex items-center justify-between w-full text-left relative text-base font-medium transition-colors ${
+                    className={`flex items-center justify-between w-full text-left relative text-base font-medium transition-colors py-2 ${
                       isServicesActive() ? "text-primary" : "text-foreground"
                     }`}
                   >
@@ -151,16 +151,20 @@ const Navbar = () => {
                   </button>
                   
                   {isServicesOpen && (
-                    <div className="pl-4 space-y-3 animate-fade-in-fast">
-                      <NavLink to="/services" active={isActive("/services")} onClick={closeMenu}>
-                        Vue d'ensemble des services
-                      </NavLink>
-                      {servicePages.map((service) => (
-                        <NavLink key={service.path} to={service.path} active={isActive(service.path)} onClick={closeMenu}>
-                          {service.name}
+                    <ul className="ml-4 mt-2 space-y-2 animate-fade-in-fast border-l border-primary/20 pl-4">
+                      <li>
+                        <NavLink to="/services" active={isActive("/services")} onClick={closeMenu}>
+                          Vue d'ensemble des services
                         </NavLink>
+                      </li>
+                      {servicePages.map((service) => (
+                        <li key={service.path}>
+                          <NavLink to={service.path} active={isActive(service.path)} onClick={closeMenu}>
+                            {service.name}
+                          </NavLink>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   )}
                 </div>
                 
