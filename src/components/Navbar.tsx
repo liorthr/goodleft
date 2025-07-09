@@ -12,11 +12,16 @@ import {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
+  const closeMenu = () => {
+    setIsOpen(false);
+    setIsServicesOpen(false);
+  };
+  const toggleServices = () => setIsServicesOpen(!isServicesOpen);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,16 +135,35 @@ const Navbar = () => {
                 <NavLink to="/" active={isActive("/")} onClick={closeMenu}>
                   Accueil
                 </NavLink>
-                <div className="pl-4 space-y-3">
-                  <NavLink to="/services" active={isActive("/services")} onClick={closeMenu}>
-                    Vue d'ensemble des services
-                  </NavLink>
-                  {servicePages.map((service) => (
-                    <NavLink key={service.path} to={service.path} active={isActive(service.path)} onClick={closeMenu}>
-                      {service.name}
-                    </NavLink>
-                  ))}
+                
+                {/* Mobile Services Dropdown */}
+                <div className="flex flex-col space-y-3">
+                  <button
+                    onClick={toggleServices}
+                    className={`flex items-center justify-between w-full text-left relative text-base font-medium transition-colors ${
+                      isServicesActive() ? "text-primary" : "text-foreground"
+                    }`}
+                  >
+                    <span>Services</span>
+                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${
+                      isServicesOpen ? "rotate-180" : ""
+                    }`} />
+                  </button>
+                  
+                  {isServicesOpen && (
+                    <div className="pl-4 space-y-3 animate-fade-in-fast">
+                      <NavLink to="/services" active={isActive("/services")} onClick={closeMenu}>
+                        Vue d'ensemble des services
+                      </NavLink>
+                      {servicePages.map((service) => (
+                        <NavLink key={service.path} to={service.path} active={isActive(service.path)} onClick={closeMenu}>
+                          {service.name}
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
                 </div>
+                
                 <NavLink to="/blog" active={isActive("/blog")} onClick={closeMenu}>
                   Blog
                 </NavLink>
