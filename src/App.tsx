@@ -21,6 +21,7 @@ import MetaAds from "./pages/MetaAds";
 import Emailing from "./pages/Emailing";
 import SEO from "./pages/SEO";
 import LinkedIn from "./pages/LinkedIn";
+import Israel from "./pages/Israel";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/israel" element={<Israel />} />
           <Route path="/admin/blog/new" element={<AddBlogArticle />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
