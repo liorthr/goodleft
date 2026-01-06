@@ -165,7 +165,7 @@ const Index = () => {
             <ServiceCard icon={<Monitor className="h-6 w-6" />} title="Native Ads" description="Campagnes Taboola et Outbrain pour scaler votre acquisition avec des budgets jusqu'à 10K€/jour." link="/services#nativeads" delay={150} />
             <ServiceCard icon={<Zap className="h-6 w-6" />} title="TikTok Ads" description="Stratégies innovantes sur TikTok pour atteindre de nouvelles audiences." link="/services#tiktokads" delay={200} />
             <ServiceCard icon={<Target className="h-6 w-6" />} title="Google Ads" description="Campagnes AdWords pour capturer l'intention d'achat et maximiser le ROI." link="/services#googleads" delay={300} />
-            <ServiceCard icon={<MessageSquare className="h-6 w-6" />} title="SMS & Mailing" description="Communication directe et personnalisée pour convertir et fidéliser." link="/services#messaging" delay={400} />
+            <ServiceCard icon={<MessageSquare className="h-6 w-6" />} title="GEO Présence sur ChatGPT" description="Communication directe et personnalisée pour convertir et fidéliser." link="/services#messaging" delay={400} />
             <ServiceCard icon={<MousePointerClick className="h-6 w-6" />} title="Lead Generation" description="Stratégies complètes pour capturer des contacts qualifiés et prêts à convertir." link="/services#leadgen" delay={500} />
             <ServiceCard icon={<Gauge className="h-6 w-6" />} title="Automatisation" description="Optimisation des processus et du parcours client pour un meilleur taux de conversion." link="/services#automation" delay={600} />
           </div>
