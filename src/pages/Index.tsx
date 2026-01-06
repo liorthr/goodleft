@@ -178,7 +178,7 @@ const Index = () => {
           <SectionHeading title="Industries que nous servons" subtitle="Notre expertise s'étend à plusieurs secteurs avec une spécialisation dans le bâtiment." centered chip="Expertises sectorielles" />
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <IndustryCard name="BTP" icon={<Building className="h-5 w-5" />} delay={100} />
+            <IndustryCard name="Finance" icon={<Building className="h-5 w-5" />} delay={100} />
             <IndustryCard name="Solaire" icon={<Sun className="h-5 w-5" />} delay={150} />
             <IndustryCard name="Immobilier" icon={<Home className="h-5 w-5" />} delay={200} />
             <IndustryCard name="Santé" icon={<Stethoscope className="h-5 w-5" />} delay={250} />
