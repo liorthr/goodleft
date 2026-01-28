@@ -3,21 +3,13 @@ import { MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface WhatsAppButtonProps {
-  phoneNumber: string;
-  message?: string;
   className?: string;
 }
 
 const WhatsAppButton = ({
-  phoneNumber,
-  message = "Bonjour, je vous contacte depuis votre site web.",
   className,
 }: WhatsAppButtonProps) => {
-  // Format phone number - remove any non-digit characters
-  const formattedPhone = phoneNumber.replace(/\D/g, "");
-  
-  // Create WhatsApp URL with phone and message
-  const whatsappUrl = `https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = "https://wa.me/33782979479";
   
   return (
     <a
